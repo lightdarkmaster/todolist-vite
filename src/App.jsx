@@ -1,5 +1,7 @@
 import './App.css'
 import { useState } from 'react';
+import Modal from './modal';
+
 
 function Todo() {
   const [tasks, setTasks] = useState([]);
@@ -7,6 +9,7 @@ function Todo() {
   const [description, setDescription] = useState('');
   const [editIndex, setEditIndex] = useState(null);
   const [searchValue, setSearchValue] = useState('');
+  const [isOpen, setIsOpen] = useState(false);
 
   const submitTasks = (e) => {
     e.preventDefault();
@@ -25,6 +28,10 @@ function Todo() {
     }
   };
 
+  // const viewTask = (index) => {
+  //   const task = tasks[index];
+  //   alert(`Title: ${task.title}\nDescription: ${task.description}`);
+  // }
 
   const editTask = (index) => {
     setTitle(tasks[index].title);
@@ -51,8 +58,10 @@ function Todo() {
               <strong>{task.title}</strong>: {task.description}
             </div>
             <div>
+              <button onClick={() => { setIsOpen(true); }} className="m-3 hover:bg-red-700">View</button>
               <button onClick={() => editTask(index)} className="m-3 hover:bg-red-700">Edit</button>
               <button onClick={() => deleteTask(index)} className="mr-2 hover:bg-red-700">Delete</button>
+              {isOpen && <Modal setIsOpen={setIsOpen} />}
             </div>
           </li>
         ))}
