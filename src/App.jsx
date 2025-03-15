@@ -28,10 +28,10 @@ function Todo() {
     }
   };
 
-  // const viewTask = (index) => {
-  //   const task = tasks[index];
-  //   alert(`Title: ${task.title}\nDescription: ${task.description}`);
-  // }
+  const viewTask = (index) => {
+    const task = tasks[index];
+    alert(`Title: ${task.title}\nDescription: ${task.description}`);
+  }
 
   const editTask = (index) => {
     setTitle(tasks[index].title);
@@ -58,7 +58,7 @@ function Todo() {
               <strong>{task.title}</strong>: {task.description}
             </div>
             <div>
-              <button onClick={() => { setIsOpen(true); }} className="m-3 hover:bg-red-700">View</button>
+              <button onClick={() => {viewTask(index)}} className="m-3 hover:bg-red-700">View</button>
               <button onClick={() => editTask(index)} className="m-3 hover:bg-red-700">Edit</button>
               <button onClick={() => deleteTask(index)} className="mr-2 hover:bg-red-700">Delete</button>
               {isOpen && <Modal setIsOpen={setIsOpen} />}
