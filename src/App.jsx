@@ -3,28 +3,32 @@ import { useState } from 'react';
 
 function Todo() {
   const [tasks, setTasks] = useState([]);
-  const [inputValue, setInputValue] = useState('');
+  const [title, setTitle] = useState('');
+  const [description, setDescription] = useState('');
   const [editIndex, setEditIndex] = useState(null);
   const [searchValue, setSearchValue] = useState('');
 
   const submitTasks = (e) => {
     e.preventDefault();
-    if (inputValue.trim()) {
+    if (title.trim() && description.trim()) {
       if (editIndex !== null) {
         const updatedTasks = tasks.map((task, index) =>
-          index === editIndex ? inputValue : task
+          index === editIndex ? { title, description } : task
         );
         setTasks(updatedTasks);
         setEditIndex(null);
       } else {
-        setTasks([...tasks, inputValue]);
+        setTasks([...tasks, { title, description }]);
       }
-      setInputValue('');
+      setTitle('');
+      setDescription('');
     }
   };
 
+
   const editTask = (index) => {
-    setInputValue(tasks[index]);
+    setTitle(tasks[index].title);
+    setDescription(tasks[index].description);
     setEditIndex(index);
   };
 
@@ -35,17 +39,20 @@ function Todo() {
 
   const renderTasks = () => {
     const filteredTasks = tasks.filter(task =>
-      task.toLowerCase().includes(searchValue.toLowerCase())
+      task.title.toLowerCase().includes(searchValue.toLowerCase()) ||
+      task.description.toLowerCase().includes(searchValue.toLowerCase())
     );
 
     return (
       <ul>
         {filteredTasks.map((task, index) => (
           <li key={index} className="flex justify-between items-center">
-            {task}
             <div>
-              <button onClick={() => editTask(index)} className="mr-2">Edit</button>
-              <button onClick={() => deleteTask(index)}>Delete</button>
+              <strong>{task.title}</strong>: {task.description}
+            </div>
+            <div>
+              <button onClick={() => editTask(index)} className="m-3 hover:bg-red-700">Edit</button>
+              <button onClick={() => deleteTask(index)} className="mr-2 hover:bg-red-700">Delete</button>
             </div>
           </li>
         ))}
@@ -55,27 +62,36 @@ function Todo() {
 
   return (
     <>
-      <div className="rounded-lg p-4 m-4 shadow-[0px_10px_90px_-15px_rgba(255,0,0,1.0)]">
-        <h1 className="font-sans hover:font-serif from-neutral-400 inline-block">Todo List</h1>
-        <form onSubmit={submitTasks} className="rounded-lg bg-black-100 p-4 m-4 flex gap-3 ">
+      <div className="rounded-lg p-4 m-4 shadow-[0px_10px_90px_-15px_rgba(255,0,0,1.0)] hover:shadow-[0px_10px_90px_-15px_rgba(0,0,255,1.0)] w-[100%] resize-none">
+        <h1 className="font-sans hover:font-serif from-neutral-10 inline-block bg-transparent">Todo List</h1>
+        <form onSubmit={submitTasks} className="rounded-lg bg-black-100 p-4 m-4 flex gap-3 max">
           <input
-            className="h-10 rounded-full p-5"
+            className="h-10 w-[100%] rounded-full p-5 hover:shadow-[10px_5px_100px_-15px_rgba(0,0,255,1.0)]"
             type="text"
-            placeholder="Add a new task"
-            value={inputValue}
-            onChange={(e) => setInputValue(e.target.value)}
+            placeholder="Task Title"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
           />
           <button className="rounded-full border-none hover:bg-red-700" type="submit">
             {editIndex !== null ? 'Update' : 'Add'}
           </button>
         </form>
+        <form onSubmit={submitTasks} className="rounded-lg bg-black-100 p-2 m-2 max-w-full h-40 flex flex-col">
+          <textarea
+            className="h-40 w-[100%] p-3 resize-none rounded-[10px] max-w-full"
+            type="text"
+            placeholder="Description"
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+          />
+        </form>
         <div className="relative">
           <label htmlFor="Search" className="sr-only"> Search </label>
-          <input  
+          <input
             type="text"
             id="Search"
-            placeholder="Search for..."
-            className="w-full rounded-md border-none py-2.5 pe-10 shadow-xs sm:text-sm p-5"
+            placeholder="Search"
+            className="w-full rounded-md border-none py-2.5 pe-10 shadow-xs sm:text-sm p-5 hover:shadow-[10px_5px_100px_-15px_rgba(0,0,255,1.0)]"
             value={searchValue}
             onChange={(e) => setSearchValue(e.target.value)}
           />
@@ -99,7 +115,7 @@ function Todo() {
             </button>
           </span>
         </div>
-        <div className="rounded-s-md">
+        <div className="rounded-s-md flex flex-col p-5s">
           {renderTasks()}
         </div>
       </div>
