@@ -1,6 +1,6 @@
 import './App.css'
 import { useState } from 'react';
-import Modal from './modal';
+import Swal from 'sweetalert2'
 
 
 function Todo() {
@@ -9,7 +9,19 @@ function Todo() {
   const [description, setDescription] = useState('');
   const [editIndex, setEditIndex] = useState(null);
   const [searchValue, setSearchValue] = useState('');
-  const [isOpen, setIsOpen] = useState(false);
+
+
+  const showModalTask = (index) => {
+    const task = tasks[index];
+    Swal.fire({
+      title: `Title: ${task.title}`,
+      text: `Description: ${task.description}`,
+      icon: "info",
+      showCancelButton: false,
+      confirmButtonColor: "#3085d6",
+      confirmButtonText: "Close"
+    });
+  };
 
   const submitTasks = (e) => {
     e.preventDefault();
@@ -28,10 +40,10 @@ function Todo() {
     }
   };
 
-  const viewTask = (index) => {
-    const task = tasks[index];
-    alert(`Title: ${task.title}\nDescription: ${task.description}`);
-  }
+  // const viewTask = (index) => {
+  //   const task = tasks[index];
+  //   alert(`Title: ${task.title}\nDescription: ${task.description}`);
+  // }
 
   const editTask = (index) => {
     setTitle(tasks[index].title);
@@ -52,19 +64,18 @@ function Todo() {
 
     return (
       <ul>
-        {filteredTasks.map((task, index) => (
-          <li key={index} className="flex justify-between items-center">
-            <div>
-              <strong>{task.title}</strong>: {task.description}
-            </div>
-            <div>
-              <button onClick={() => {viewTask(index)}} className="m-3 hover:bg-red-700">View</button>
-              <button onClick={() => editTask(index)} className="m-3 hover:bg-red-700">Edit</button>
-              <button onClick={() => deleteTask(index)} className="mr-2 hover:bg-red-700">Delete</button>
-              {isOpen && <Modal setIsOpen={setIsOpen} />}
-            </div>
-          </li>
-        ))}
+      {filteredTasks.map((task, index) => (
+        <li key={index} className="flex justify-between items-center">
+        <div>
+          <strong>{task.title}</strong>: {task.description}
+        </div>
+        <div>
+          <button onClick={() => showModalTask(index)} className="m-3 hover:bg-red-700">View</button>
+          <button onClick={() => editTask(index)} className="m-3 hover:bg-red-700">Edit</button>
+          <button onClick={() => deleteTask(index)} className="mr-2 hover:bg-red-700">Delete</button>
+        </div>
+        </li>
+      ))}
       </ul>
     );
   };
