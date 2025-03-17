@@ -3,6 +3,9 @@ import { useState } from 'react';
 import Swal from 'sweetalert2'
 
 
+//usa la ka state an title tas an desctription
+//add login
+//prime react
 function Todo() {
   const [tasks, setTasks] = useState([]);
   const [title, setTitle] = useState('');
