@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 
-function Login({click}) {
+function Login({click, loggedIn, setLogin}) {
     const [username, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
@@ -43,7 +43,7 @@ function Login({click}) {
                         value={password}
                         onChange={handlePasswordChange}
                     />
-                    <button className="font-bold bg-indigo-500 hover:bg-indigo-700" type="submit">Login</button>
+                    <button className="font-bold bg-indigo-500 hover:bg-indigo-700" type="button" onClick={() => setLogin(!loggedIn)}>Login</button>
                     <button className="font-bold bg-red-500 hover:bg-red-700" type="submit" onClick={()=>{click()}}>Sign Up</button>
 
                 </form>
