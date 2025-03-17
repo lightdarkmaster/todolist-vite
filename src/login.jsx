@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 
 
-function Login({click, loggedIn, setLogin}) {
-    const [username, setEmail] = useState("");
+function Login({ loggedIn, setLogin}) {
+    const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
 
-    const handleEmailChange = (e) => {
-        setEmail(e.target.value);
+    const usernameChange = (e) => {
+        setUsername(e.target.value);
     };
 
     const handlePasswordChange = (e) => {
@@ -19,6 +19,7 @@ function Login({click, loggedIn, setLogin}) {
         console.log("Password:", password);
         if(username === 'chan' && password ==='chan123'){
             console.log("Login Successfully");
+            setLogin(true)
         }else{
             console.log("Access Denied");
         }
@@ -34,7 +35,7 @@ function Login({click, loggedIn, setLogin}) {
                         type="text"
                         placeholder="Username"
                         value={username}
-                        onChange={handleEmailChange}
+                        onChange={usernameChange}
                     />
                     <input
                         className="h-12 w-[100%] rounded-xl p-5 mb-4 hover:shadow-[10px_5px_100px_-15px_rgba(0,0,255,1.0)]"
@@ -43,9 +44,8 @@ function Login({click, loggedIn, setLogin}) {
                         value={password}
                         onChange={handlePasswordChange}
                     />
-                    <button className="font-bold bg-indigo-500 hover:bg-indigo-700" type="button" onClick={() => setLogin(!loggedIn)}>Login</button>
-                    <button className="font-bold bg-red-500 hover:bg-red-700" type="submit" onClick={()=>{click()}}>Sign Up</button>
-
+                    <button className="font-bold bg-indigo-500 hover:bg-indigo-700" type="submit">Login</button>
+                    {/* <button className="font-bold bg-red-500 hover:bg-red-700" type="submit" onClick={()=>{click()}}>Sign Up</button> */}
                 </form>
             </div>
         </div>

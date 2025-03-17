@@ -1,25 +1,25 @@
-import { StrictMode} from 'react'
+import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.jsx'
-import LoginUser from './login.jsx'
+// import LoginUser from './Login.jsx'
 import SignUp from './signup.jsx'
 
-function Main() { 
+function Main() {
 
-//   const [clicked, setClicked] = useState(false);
+  // const [clicked, setClicked] = useState(false);
 
-// function clickedTrigger(){
-//   setClicked(!clicked)
-// }
+  // function clickedTrigger() {
+  //   setClicked(!clicked)
+  // }
 
 
   // if (clicked) {
-  //   return <SignUp click={clickedTrigger}/>
+  //   return <SignUp click={clickedTrigger} />
   // }
 
   // if (!clicked) {
-  //   return <LoginUser click={clickedTrigger}/>
+  //   return <LoginUser click={clickedTrigger} />
   // }
 
   return <App />

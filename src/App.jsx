@@ -1,7 +1,7 @@
 import './App.css'
 import { useState } from 'react';
 import Swal from 'sweetalert2'
-import Login from './login';
+import Login from './Login';
 
 
 //usa la ka state an title tas an desctription
@@ -148,7 +148,7 @@ function Todo() {
       </>
     );
   } else {
-    return <Login loggedIn={loggedIn} setLogin={() => setLoggedIn(true)} />
+    return <Login loggedIn={loggedIn} setLogin={setLoggedIn} />
   }
 
 }
