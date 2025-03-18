@@ -22,7 +22,8 @@ function Todo() {
       icon: "info",
       showCancelButton: false,
       confirmButtonColor: "#3085d6",
-      confirmButtonText: "Close"
+      confirmButtonText: "Close",
+      theme: "dark"
     });
   };
 
@@ -30,7 +31,8 @@ function Todo() {
     Swal.fire({
       title: "Added Succesfully!",
       icon: "success",
-      draggable: true
+      draggable: true,
+      theme: "dark"
     });
   }
 
@@ -49,14 +51,16 @@ function Todo() {
       showCancelButton: true,
       confirmButtonText: "Yes, delete it!",
       cancelButtonText: "No, cancel!",
-      reverseButtons: true
+      reverseButtons: true,
+      theme: "dark"
     }).then((result) => {
       if (result.isConfirmed) {
         deleteTask(index);
         swalWithBootstrapButtons.fire({
           title: "Deleted!",
           text: "Your file has been deleted.",
-          icon: "success"
+          icon: "success",
+          theme: "dark"
         });
       } else if (
         result.dismiss === Swal.DismissReason.cancel
@@ -64,7 +68,8 @@ function Todo() {
         swalWithBootstrapButtons.fire({
           title: "Cancelled",
           text: "Your imaginary file is safe :)",
-          icon: "error"
+          icon: "error",
+          theme: "dark"
         });
       }
     });
@@ -80,7 +85,7 @@ function Todo() {
         setTasks(updatedTasks);
         setEditIndex(null);
       } else {
-        setTasks([...tasks, { title, description }]);
+        setTasks([...tasks, { title, description }]); 
       }
       setTitle('');
       setDescription('');
@@ -129,11 +134,11 @@ function Todo() {
 
   return (
     <>
-      <div className="rounded-lg p-4 m-4 shadow-[0px_10px_90px_-15px_rgba(255,0,0,1.0)] hover:shadow-[0px_10px_90px_-15px_rgba(0,0,255,1.0)] w-[100%] resize-none">
+      <div className="rounded-lg p-4 m-4 shadow-[0px_10px_90px_-15px_rgba(255,0,0,1.0)] hover:shadow-[0px_10px_90px_-15px_rgba(0,0,255,1.0)] w-[100%] resize-none border">
         <h1 className="font-sans hover:font-serif from-neutral-10 inline-block bg-transparent">Todo List</h1>
         <form onSubmit={submitTasks} className="rounded-lg bg-black-100 p-4 m-4 flex gap-3 max">
           <input
-            className="h-10 w-[100%] rounded-full p-5 hover:shadow-[10px_5px_100px_-15px_rgba(0,0,255,1.0)]"
+            className="h-10 w-[100%] rounded-full p-5 hover:shadow-[10px_5px_100px_-15px_rgba(0,0,255,1.0)] border"
             type="text"
             placeholder="Task Title"
             value={title}
@@ -145,7 +150,7 @@ function Todo() {
         </form>
         <form onSubmit={submitTasks} className="rounded-lg bg-black-100 p-2 m-2 max-w-full h-40 flex flex-col">
           <textarea
-            className="h-40 w-[100%] p-3 resize-none rounded-[10px] max-w-full"
+            className="h-40 w-[100%] p-3 resize-none rounded-[10px] max-w-full border"
             type="text"
             placeholder="Description"
             value={description}
@@ -163,7 +168,7 @@ function Todo() {
             onChange={(e) => setSearchValue(e.target.value)}
           />
           <span className="absolute inset-y-0 end-0 grid w-10 place-content-center">
-            <button type="button" className="text-gray-600 hover:text-gray-70 hover:bg-red-700 hover:text-white-600 ">
+            <button type="button" className="text-gray-600 hover:text-gray-70 hover:bg-red-700 hover:text-white-600 border">
               <span className="sr-only">Search</span>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
