@@ -7,13 +7,12 @@ import Login from './Login';
 //usa la ka state an title tas an desctription
 //add login
 //prime react
-function Todo() {
+function Todo({loggedIn}) {
   const [tasks, setTasks] = useState([]);
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [editIndex, setEditIndex] = useState(null);
   const [searchValue, setSearchValue] = useState('');
-  const [loggedIn, setLoggedIn] = useState(false);
 
 
   const showModalTask = (index) => {
@@ -85,7 +84,6 @@ function Todo() {
     );
   };
 
-  if (loggedIn) {
     return (
       <>
         <div className="rounded-lg p-4 m-4 shadow-[0px_10px_90px_-15px_rgba(255,0,0,1.0)] hover:shadow-[0px_10px_90px_-15px_rgba(0,0,255,1.0)] w-[100%] resize-none">
@@ -147,10 +145,6 @@ function Todo() {
         </div>
       </>
     );
-  } else {
-    return <Login loggedIn={loggedIn} setLogin={setLoggedIn} />
-  }
-
 }
 
 export default Todo;
