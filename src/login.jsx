@@ -1,14 +1,18 @@
 import React, { useState } from "react";
 import { FaEye } from "react-icons/fa";
-import App from './App.jsx'
+import { FaEyeSlash } from "react-icons/fa6";
 import { useNavigate } from "react-router";
 
 function Login({ click, users }) {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
+    const [showPass, setShowPass] = useState(false);
     const navigate = useNavigate();
 
 
+    const showPassword = () => {
+        setShowPass(!showPass);
+    }
 
     const handleUsernameChange = (e) => {
         setUsername(e.target.value);
@@ -18,7 +22,7 @@ function Login({ click, users }) {
         setPassword(e.target.value);
     };
 
-    const loginSubmit = (e, ) => {
+    const loginSubmit = (e,) => {
         e.preventDefault();
         console.log("Username:", username);
         console.log("Password:", password);
@@ -43,10 +47,14 @@ function Login({ click, users }) {
                         onChange={handleUsernameChange}
                     />
                     <div className="relative inline-block ">
-                        <FaEye className="absolute text-[28px] top-[11px] transform right-[10px] cursor-pointer" />
+                        {
+                            showPass ?
+                                <FaEye className="absolute text-[28px] top-[11px] transform right-[10px] cursor-pointer" onClick={() => { showPassword() }} /> :
+                                <FaEyeSlash className="absolute text-[28px] top-[11px] transform right-[10px] cursor-pointer" onClick={() => { showPassword() }} />
+                        }
                         <input
                             className="h-12 w-full rounded-xl p-5 mb-4 hover:shadow-[10px_5px_100px_-15px_rgba(0,0,255,1.0)]"
-                            type="password"
+                            type={showPass ? 'text' : 'password'}
                             placeholder="Password"
                             value={password}
                             onChange={handlePasswordChange}
