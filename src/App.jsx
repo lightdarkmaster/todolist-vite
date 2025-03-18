@@ -7,7 +7,7 @@ import Login from './Login';
 //usa la ka state an title tas an desctription
 //add login
 //prime react
-function Todo({loggedIn}) {
+function Todo() {
   const [tasks, setTasks] = useState([]);
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');

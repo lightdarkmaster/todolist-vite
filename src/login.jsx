@@ -3,7 +3,7 @@ import { FaEye } from "react-icons/fa";
 import App from './App.jsx'
 import { useNavigate } from "react-router";
 
-function Login({ click, users, setLoggedIn}) {
+function Login({ click, users}) {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const navigate = useNavigate();
