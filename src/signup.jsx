@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-
-function SignUp({ users }) {
+function SignUp({ users, click }) {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
 
@@ -10,13 +9,12 @@ function SignUp({ users }) {
             alert("Username and password cannot be empty");
             return;
         }
-        const newUser = { username: username, password: password };
-        const updatedUsers = [...users, newUser];
-        //setUsers(updatedUsers);
+        const newUser = { username: username, password: password }; 
+        users.push(newUser);
         setUsername("");
         setPassword("");
-        console.log(updatedUsers);
-        console.log(newUser);
+        console.log(users);
+        click(false);
     };
 
     return (
