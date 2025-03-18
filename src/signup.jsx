@@ -7,6 +7,10 @@ function SignUp() {
 
     const registerUser = (e) => {
         e.preventDefault();
+        if (username === '' || password === '') {
+            alert("Username and password cannot be empty");
+            return;
+        }
         const newUser = { username, password };
         const updatedUsers = [...users, newUser];
         setUsers(updatedUsers);
