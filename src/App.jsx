@@ -1,6 +1,6 @@
 import './App.css'
 import { useState } from 'react';
-import Swal from 'sweetalert2'
+import Swal from 'sweetalert2';
 import Login from './Login';
 
 

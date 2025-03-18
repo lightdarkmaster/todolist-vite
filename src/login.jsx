@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { FaEye } from "react-icons/fa";
 import { FaEyeSlash } from "react-icons/fa6";
 import { useNavigate } from "react-router";
+import Swal from 'sweetalert2';
+
 
 function Login({ click, users }) {
     const [username, setUsername] = useState("");
@@ -14,6 +16,22 @@ function Login({ click, users }) {
         setShowPass(!showPass);
     }
 
+    const loginSuccessModal=()=>{
+        Swal.fire({
+            title: "Logged In Successfully!",
+            icon: "success",
+            draggable: true
+          });
+    }
+
+    const loginNotSuccessful=()=>{
+        Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "Something went wrong!",
+            footer: '<a href="#">Why do I have this issue?</a>'
+          });
+    }
     const handleUsernameChange = (e) => {
         setUsername(e.target.value);
     };
@@ -30,7 +48,10 @@ function Login({ click, users }) {
         console.log(found);
 
         if (found) {
+            loginSuccessModal();
             navigate('/app');
+        }else{
+            loginNotSuccessful();
         }
     };
 
