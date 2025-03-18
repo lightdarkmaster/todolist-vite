@@ -1,7 +1,6 @@
 import './App.css'
 import { useState } from 'react';
 import Swal from 'sweetalert2';
-import Login from './Login';
 
 
 //usa la ka state an title tas an desctription
