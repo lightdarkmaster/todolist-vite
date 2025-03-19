@@ -31,7 +31,7 @@ function Login({ click, users }) {
             icon: "error",
             title: "Oops...",
             text: "Something went wrong!",
-            footer: '<a href="#">Why do I have this issue?</a>',
+            footer: '<a href="#">Sign Up</a>',
             theme: "dark"
           });
     }
@@ -43,7 +43,8 @@ function Login({ click, users }) {
         setPassword(e.target.value);
     };
 
-    const loginSubmit = (e,) => {
+
+    const loginSubmit = (e) => {
         e.preventDefault();
         console.log("Username:", username);
         console.log("Password:", password);
