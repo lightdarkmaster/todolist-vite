@@ -31,7 +31,7 @@ function Login({ click, users }) {
             icon: "error",
             title: "Oops...",
             text: "Something went wrong!",
-            footer: '<a href="#">Sign Up</a>',
+            footer: '<a href="/">Sign Up</a>',
             theme: "dark"
           });
     }
