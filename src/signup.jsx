@@ -1,24 +1,34 @@
 import React, { useState } from "react";
 import logo from './assets/h.gif'; 
+import Swal from 'sweetalert2';
 
 function SignUp({ users, click }) {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
+    
 
+    const registerModal =()=>{
+        Swal.fire({
+            title: "Registered Succesfully!",
+            icon: "success",
+            draggable: true,
+            theme: "dark"
+          });
+    }
     const registerUser = (e) => {
         e.preventDefault();
         if (username === '' || password === '') {
             alert("Username and password cannot be empty");
             return;
         }
-        const newUser = { username: username, password: password }; 
+        registerModal();
+        const newUser = {username: username, password: password }; 
         users.push(newUser);
         setUsername("");
         setPassword("");
         console.log(users);
         click(false);
     };
-
     return (
         <div className="border-2 border-indigo-700 w-[100%] h-[100%] m-4 p-2 rounded-xl shadow-[10px_5px_100px_-15px_rgba(0,0,255,1.0)] hover:shadow-[10px_5px_100px_-15px_rgba(0,255,255,1.0)]">
             <div className="w-[100%] flex flex-col gap-2">

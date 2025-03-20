@@ -48,7 +48,7 @@ function Login({ click, users }) {
         e.preventDefault();
         console.log("Username:", username);
         console.log("Password:", password);
-        const found = users.some((user) => user.username === username && user.password === password)
+        const found = users.some((user) => user.username === username && user.password === password);
         console.log(found);
 
         if (found) {
