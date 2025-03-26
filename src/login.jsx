@@ -60,6 +60,7 @@ function Login({ click, users }) {
     };
 
     return (
+        <>
         <div className="border-2 border-indigo-700 w-full h-full m-4 p-2 rounded-xl shadow-[10px_5px_100px_-15px_rgba(0,0,255,1.0)] hover:shadow-[10px_5px_100px_-15px_rgba(0,255,255,1.0)]">
             <div className="w-full flex flex-col gap-2">
                 <h1 className="text-[2rem] font-bold underline decoration-sky-500 cursor-pointer text-white p-3">Login</h1>
@@ -101,6 +102,7 @@ function Login({ click, users }) {
                 </form>
             </div>
         </div>
+        </>
     );
 
 }
