@@ -12,18 +12,18 @@ export default function Form() {
   function clickedTrigger() {
     setClicked(!clicked)
   }
-  
-return (
-<div>
-    {
-        clicked && <SignUp click={clickedTrigger} users={users}/>
 
-    }
-    {
-        !clicked && <Login loggedIn={loggedIn}  click={clickedTrigger} users={users} setLoggedIn={setLoggedIn}/>
-    }
-</div>
+  return (
+    <div>
+      {
+        clicked && <SignUp click={clickedTrigger} users={users} />
+
+      }
+      {
+        !clicked && <Login loggedIn={loggedIn} click={clickedTrigger} users={users} setLoggedIn={setLoggedIn} />
+      }
+    </div>
 
 
-)
+  )
 }

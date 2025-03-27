@@ -27,7 +27,7 @@ function Todo() {
     });
   };
 
-  const modalUpdated =()=>{
+  const modalUpdated = () => {
     Swal.fire({
       title: "Added Succesfully!",
       icon: "success",
@@ -36,7 +36,7 @@ function Todo() {
     });
   }
 
-  const modalForDelete =(index)=>{
+  const modalForDelete = (index) => {
     const swalWithBootstrapButtons = Swal.mixin({
       customClass: {
         confirmButton: "btn btn-success",
@@ -85,7 +85,7 @@ function Todo() {
         setTasks(updatedTasks);
         setEditIndex(null);
       } else {
-        setTasks([...tasks, { title, description }]); 
+        setTasks([...tasks, { title, description }]);
       }
       setTitle('');
       setDescription('');
@@ -124,7 +124,7 @@ function Todo() {
             <div>
               <button onClick={() => showModalTask(index)} className="m-3 hover:bg-red-700">View</button>
               <button onClick={() => editTask(index)} className="m-3 hover:bg-red-700">Edit</button>
-              <button onClick={() => {modalForDelete(index);}} className="mr-2 hover:bg-red-700">Delete</button>
+              <button onClick={() => { modalForDelete(index); }} className="mr-2 hover:bg-red-700">Delete</button>
             </div>
           </li>
         ))}
@@ -144,7 +144,7 @@ function Todo() {
             value={title}
             onChange={(e) => setTitle(e.target.value)}
           />
-          <button className="rounded-full border-none hover:bg-red-700" type="submit" onClick={()=>{modalUpdated()}}>
+          <button className="rounded-full border-none hover:bg-red-700" type="submit" onClick={() => { modalUpdated() }}>
             {editIndex !== null ? 'Update' : 'Add'}
           </button>
         </form>
