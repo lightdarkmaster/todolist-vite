@@ -1,5 +1,6 @@
 import './App.css'
 import { useState } from 'react';
+import { useNavigate } from 'react-router';
 import Swal from 'sweetalert2';
 
 
@@ -12,7 +13,7 @@ function Todo() {
   const [description, setDescription] = useState('');
   const [editIndex, setEditIndex] = useState(null);
   const [searchValue, setSearchValue] = useState('');
-
+  const navigate = useNavigate();
 
   const showModalTask = (index) => {
     const task = tasks[index];
@@ -34,6 +35,19 @@ function Todo() {
       draggable: true,
       theme: "dark"
     });
+  }
+
+  const logoutModal = () => {
+    Swal.fire({
+      title: "Logout Succesfully!",
+      icon: "success",
+      draggable: true,
+      theme: "dark"
+    });
+  }
+  const logout = () => {
+    logoutModal();
+    navigate('/');
   }
 
   const modalForDelete = (index) => {
@@ -190,9 +204,11 @@ function Todo() {
         <div className="rounded-s-md flex flex-col p-5s">
           {renderTasks()}
         </div>
+        <div className="p-5">
+          <button type="button" className="hover:bg-red-700" onClick={() => { logout() }}>Log out</button>
+        </div>
       </div>
     </>
   );
 }
-
 export default Todo;
